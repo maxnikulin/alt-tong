@@ -1,0 +1,30 @@
+{
+	"extensionName": { "message": "Переключатель языка страниц Alt Tong" },
+	"extensionDescription": {
+		"message": "Расширение позволяет быстро изменить предпочтительный язык веб-страниц, подменяя заголовок «Accept-Language» в HTTP-запросах к серверу.\nПо мотивам расширения «Quick Accept-Language Switcher», автор Dan Callahan.\nУправление через контекстное меню вкладок (их заголовки) и страницу настройки расширения."
+	},
+	"author": { "message": "Макс Никулин" },
+	"contextMenuOptionsItem": {
+		"message": "Настройки $EXTENSION_NAME$",
+		"description": "Tab context menu item for options (shown if no alternative header is set",
+		"placeholders": {
+			"extension_name": {
+				"content": "Alt Tong"
+			}
+		}
+	},
+	"menuDefault": { "message": "Отключить" },
+	"optionsHeader": { "message": "Дополнительный вариант HTTP-заголовка «Accept-Language»" },
+	"optionsMore": { "message": "Рекомендуется установить не менее двух языков, иначе сайты могут игнорировать значение заголовка." },
+	"optionsExample": { "message": "Пример: <code>en,ru;q=0.5</code>" },
+	"optionsTip": { "message": "Совет: чтобы соблюсти формат поля, вы можете выбрать нужные языки в настройках браузера на вкладке «Содержимое» (страница <kbd>about:preferences#content</kbd>) и <a href=\"options.html\">обновить</a> данную страницу. Не забудьте восстановить обычный порядок языков в диалоге Настройки→Содержимое (<kbd>about:preferences#content</kbd>)." },
+	"optionsCurrentAlternative": { "message": "Текущая альтернатива" },
+	"optionsBrowserSettings": { "message": "Настройка браузера" },
+	"optionsSetAsAlt": { "message": "Установить дополнительным"},
+	"optionsAltSetting": { "message": "Дополнительный вариант" },
+	"optionsMenuLabel": { "message": "Строка меню" },
+	"optionsSaveButton": { "message": "Сохранить" },
+	"optionsFormatHeader": { "message": "Формат значения заголовка" },
+	"optionsMdnWiki": { "message": "Страница MDN вики <a title=\"Accept-Language in MDN wiki\" href=\"https://developer.mozilla.org/ru/docs/Web/HTTP/Headers/Accept-Language\" >HTTP / Accept-Language</a>" }
+}
+

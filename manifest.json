@@ -1,0 +1,35 @@
+{
+	"manifest_version": 2,
+	"name": "Alt Tong",
+	"short_name": "__MSG_extensionName__",
+	"version": "0.2",
+
+	"description": "__MSG_extensionDescription__",
+	"author": "__MSG_author__",
+	"homepage_url": "https://github.com/maxnikulin/alt-tong",
+	"default_locale": "en",
+	"icons": {
+		"48": "icons/alt-tong-48.png",
+		"96": "icons/alt-tong-96.png",
+		"16": "",
+		"32": ""
+	},
+
+	"permissions": [
+		"contextMenus", "storage",
+		"webRequest", "webRequestBlocking", "http://*/*", "https://*/*"
+	],
+
+	"background": {
+		"scripts": [ "background.js" ]
+	},
+	"options_ui": {
+		"page": "options.html"
+	},
+	"applications": {
+		"gecko": {
+			"id": "alt-tong-desktop@maxnikulin.github.io",
+			"strict_min_version": "50.0"
+		}
+	}
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<!-- Copyright (C) 2017 Max Nikulin -->
+<head>
+  <meta charset="UTF-8">
+  <title>Alt Tong Settings</title>
+  <link rel="stylesheet" href="options.css" type="text/css">
+</head>
+<body>
+  <h1 data-i18n="optionsHeader">Alternative value of "Accept-Language" HTTP header</h1>
+  <p data-i18n="optionsMore">More than one language should be chosen, otherwise may have no effect.</p>
+  <p data-i18n="optionsExample">Example: <code>fr,en;q=0.5</code></p>
+  <p data-i18n="optionsTip">Tip: to get conformant value configure languages in the content tab
+    of the browser
+    preferences dialog
+    <!-- Sorry, link becomes inactive, priviledged URI blocked from JS. -->
+    (<kbd>about:preferences#content</kbd> page)
+    and <a href="options.html">refresh</a> this page.
+    Do not forget to restore default settings at the
+    Preferences→Content (<kbd>about:preferences#content</kbd>) page.
+  <form id="alt_tong_form">
+    <div>
+      <label><span data-i18n="optionsCurrentAlternative">Current alternative</span>
+        <input type="text" name="alt_tong_default_accept_language" readonly tabindex="4">
+      </label>
+    </div>
+    <div class="new-section">
+      <label><span data-i18n="optionsBrowserSettings">Browser setting</span>
+        <input type="text" name="default_accept_language" readonly tabindex="4">
+      </label>
+    </div>
+    <div>
+      <label><span></span></label>
+      <button id="set_to_brwoser_default" type="button" tabindex="3" data-i18n="optionsSetAsAlt">Set as alternative</button>
+    </div>
+    <div class="new-section">
+      <label><span data-i18n="optionsAltSetting">Alternative option</span>
+        <input type="text" name="alt_tong_accept_language" placeholder="en,ru;q=0.5" tabindex="1">
+      </label>
+    </div>
+    <div>
+      <label><span data-i18n="optionsMenuLabel">Menu item label</span>
+        <input type="text" name="alt_title" tabindex="1">
+      </label>
+      <input type="hidden" name="alt_default_title">
+    </div>
+    <div>
+      <label><span></span></label>
+      <button id="submit" type="submit" tabindex="2" data-i18n="optionsSaveButton">Save</button>
+    </div>
+  </form>
+  <h2 data-i18n="optionsFormatHeader">Format of header value</h2>
+  <ul>
+    <li>
+    <a title="RFC 3282 text" href="https://tools.ietf.org/html/rfc3282"
+      >RFC 3282 &quot;Content Language Headers&quot;</a>.
+    </li>
+    <li data-i18n="optionsMdnWiki">MDN wiki page
+    <a title="Accept-Language in MDN wiki"
+       href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language"
+       >HTTP / Accept-Language</a>
+    </li>
+  </h2>
+  <script type="text/javascript" src="hi18n.js"></script>
+  <script type="text/javascript" src="options.js"></script>
+</body>
+</html>

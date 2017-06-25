@@ -1,0 +1,17 @@
+{
+	"extensionName": { "message": "Alt Tong page language switch" },
+	"extensionDescription": {
+		"message": "Promptly change 'Accept-Language' HTTP header to a configurable string.\nInspired by Dan Callahan's \"Quick Accept-Language Switcher\".\nManaged by tabs context menu (its label) and extension options page."
+	},
+	"author": { "message": "Max Nikulin" },
+	"contextMenuOptionsItem": {
+		"message": "$EXTENSION_NAME$ Preferences",
+		"description": "Tab context menu item for options (shown if no alternative header is set",
+		"placeholders": {
+			"extension_name": {
+				"content": "Alt Tong"
+			}
+		}
+	},
+	"menuDefault": { "message": "Default" }
+}
