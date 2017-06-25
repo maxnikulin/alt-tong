@@ -11,7 +11,7 @@ ZIP = 7z
 
 SOURCES += manifest.json background.js LICENSE
 SOURCES += _locales/ru/messages.json _locales/en/messages.json
-SOURCES += icons/alt-tong-48.png icons/alt-tong-96.png
+SOURCES += icons/alt-tong-48.png icons/alt-tong-96.png icons/transparent.png
 SOURCES += options.html options.css options.js
 SOURCES += hi18n.js
 
