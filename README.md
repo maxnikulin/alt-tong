@@ -1,5 +1,7 @@
 # Alt Tong extension for Firefox
 
+![Alt tong logo](icons/alt-tong-48.png) Install from [addons.mozilla.org](https://addons.mozilla.org/en-US/firefox/addon/alt-tong/).
+
 Helps e.g. if search results depend on languages settings
 of the browser. Some topics may be better covered in
 native tongue, for other ones English is preferred due to
