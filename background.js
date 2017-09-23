@@ -288,8 +288,10 @@ var AltTong = (function() {
 					{ urls: [ testURL ] },
 					[ 'blocking', 'requestHeaders' ]
 				);
-				// For some reason synchronous call of send() results in not catched request
-				setTimeout(() => fakeRequest.send(), 0);
+				// For some reason synchronous call of send() results in not caught request.
+				// Zero timeout does not work during first loading of this extension.
+				// Reload extension works even with zero timeout.
+				setTimeout(() => fakeRequest.send(), 20);
 			} catch (e) {
 				reject(e);
 			}
