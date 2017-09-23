@@ -15,9 +15,11 @@ var AltTong = (function() {
 		current: null,
 
 		headerRewriter({ requestHeaders }) {
+			if (currentValue == null)
+				return;
 			for (let header of requestHeaders) {
 				if (header.name.toLowerCase() === 'accept-language') {
-					header.value = currentValue;
+					header.value = currentValue.value;
 					break;
 				}
 			}
@@ -76,7 +78,8 @@ var AltTong = (function() {
 				const menuValue = currentMenu.get(menuItemId);
 				checked = !(menuValue && currentValue === menuValue); // next state
 				chrome.contextMenus.update(menuItemId, {
-					title: getCheckboxWorkaroundMessage(checked, menuValue /*&& menuValue.title*/)
+					title: getCheckboxWorkaroundMessage(checked,
+						menuValue && (menuValue.title || menuValue.value))
 				});
 				currentValue = null;
 				if (!checked) {
@@ -210,18 +213,18 @@ var AltTong = (function() {
 		}
 
 		const nonDefaultChecked = (currentValue != null) && (
-			newItems.length === 1 || newItems.some(item => currentValue === item.value)
+			newItems.length === 1 || newItems.some(item => currentValue.value === item.value)
 		);
 
 		if (newItems.length === 1) {
 			removed.then(() => {
 				const item = newItems[0];
-				currentValue = item.value;
+				currentValue = item;
 				const id = contextMenus.createCheckBox({
 					title: item.title || item.value,
 					checked: nonDefaultChecked
 				});
-				currentMenu.set(id, item.value);
+				currentMenu.set(id, item);
 			});
 		} else {
 			// Not available trough options.html
@@ -237,8 +240,9 @@ var AltTong = (function() {
 						return;
 					}
 					const id = "at-i" + (index + 1);
-					const checked = nonDefaultChecked && item.value === currentValue;
-					currentMenu.set(id, item.value);
+					const checked = nonDefaultChecked
+						&& currentValue && item.value === currentValue.value;
+					currentMenu.set(id, item);
 					contextMenus.createRadioItem({
 						title: item.title || item.value, // FIXME til , or ;
 						id,
