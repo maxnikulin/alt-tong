@@ -254,7 +254,6 @@ var AltTong = (function() {
 		// not a header content, so sniff for the actual value.
 		return new Promise((resolve, reject) => {
 			try {
-				//const testURL = 'https://addons.mozilla.org/';
 				const testURL = 'http://localhost/';
 				function extractAcceptLanguages({requestHeaders}) {
 					var isFakeRequest = false;
@@ -270,7 +269,6 @@ var AltTong = (function() {
 						}
 					}
 					if (isFakeRequest) {
-						// TODO Find origin of error "Unknown listener at ... path=webRequest.onBeforeSendHeaders listenerId=..."
 						chrome.webRequest.onBeforeSendHeaders.removeListener(extractAcceptLanguages);
 						resolve(acceptLanguage);
 						return { cancel: true, requestHeaders };
@@ -279,10 +277,16 @@ var AltTong = (function() {
 					}
 				}
 				var fakeRequest = new XMLHttpRequest();
-				fakeRequest.addEventListener('load', () => console.error('request not catched'));
+				fakeRequest.addEventListener('load', () => reject(new Error('Failed to catch test XHR')));
 				fakeRequest.open('HEAD', testURL);
 				fakeRequest.setRequestHeader('X-AltTong-Sniff-Header', 'Accept-Languages');
 
+				const origReject = reject;
+				reject = reason => {
+					console.error(reason);
+					chrome.webRequest.onBeforeSendHeaders.removeListener(extractAcceptLanguages);
+					origReject(reason);
+				};
 				chrome.webRequest.onBeforeSendHeaders.addListener(
 					extractAcceptLanguages,
 					{ urls: [ testURL ] },
