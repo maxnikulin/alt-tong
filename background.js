@@ -246,7 +246,10 @@ var AltTong = (function() {
 	}
 	function doConfigure(options) {
 		return getAcceptLanguages()
-			.then(langs => updateContextMenu(options.optionList, langs));
+			.then(
+				langs => updateContextMenu(options.optionList, langs),
+				() => updateContextMenu(options.optionList, null)
+			).then(null, (e) => { console.error('Alt-Tong: doConfigure', e); });
 	}
 
 	function getAcceptLanguages() {
