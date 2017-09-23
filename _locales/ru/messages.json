@@ -14,6 +14,14 @@
 		}
 	},
 	"menuDefault": { "message": "Отключить" },
+	"menuCheckboxActivate": {
+		"message": "установить",
+		"description": "Appears in 'Alt Tong: <message> fr,en;q=0.5'"
+	},
+	"menuCheckboxDisable": {
+		"message": "отключить",
+		"description": "Appears in 'Alt Tong: <message> fr,en;q=0.5'"
+	},
 	"optionsHeader": { "message": "Дополнительный вариант HTTP-заголовка «Accept-Language»" },
 	"optionsMore": { "message": "Рекомендуется установить не менее двух языков, иначе сайты могут игнорировать значение заголовка." },
 	"optionsExample": { "message": "Пример: <code>en,ru;q=0.5</code>" },

@@ -50,6 +50,12 @@ var AltTong = (function() {
 		const CMIID_DEFAULT = 'cmiid-default';
 		const CMIID_CHECKBOX = 'cmiid-checkbox';
 		const CMIID_OPTIONS = 'cmiid-options';
+		function getCheckboxWorkaroundMessage(checked, settingTitle) {
+			const msg = checked
+				? chrome.i18n.getMessage("menuCheckboxDisable")
+				: chrome.i18n.getMessage("menuCheckboxActivate");
+			return `Alt Tong: ${msg} ${settingTitle || ""}`;
+		}
 		return {
 			listener: null,
 
@@ -62,24 +68,29 @@ var AltTong = (function() {
 				}
 			},
 
-			checkBoxListener({menuItemId, checked}) {
+			checkBoxListener({menuItemId, /* useless */ checked}) {
 				if (CMIID_CHECKBOX != menuItemId) { // assert
 					console.error(`${logPrefix}: checkbox: context menu item id '${menuItemId}' != '${CMIID_CHECKBOX}'`);
 				}
 
+				const menuValue = currentMenu.get(menuItemId);
+				checked = !(menuValue && currentValue === menuValue); // next state
+				chrome.contextMenus.update(menuItemId, {
+					title: getCheckboxWorkaroundMessage(checked, menuValue /*&& menuValue.title*/)
+				});
 				currentValue = null;
 				if (!checked) {
 					interceptor.off();
 					return;
 				}
 
-				if (!currentMenu.has(menuItemId)) {
+				if (!menuValue) {
 					console.error(`${logPrefix}: checkbox: unknown context menu item id '${menuItemId}'`);
 					interceptor.off();
 					return;
 				}
 
-				currentValue = currentMenu.get(menuItemId);
+				currentValue = menuValue;
 				interceptor.on();
 			},
 
@@ -129,15 +140,26 @@ var AltTong = (function() {
 			},
 
 			createCheckBox({checked, title}) {
-				// Suppress "16" and "32" icons by empty string in manifest.json,
+				// Due to addon icon and item checkbox were overlapped on linux,
+				// item with checkbox always go to submenu since ff 55.
+				// https://bugzilla.mozilla.org/show_bug.cgi?id=1351418
+				// Bug 1351418 "Single context menu item of checkbox
+				// "breaks the context menu layout"
+				// https://dxr.mozilla.org/mozilla-central/source/browser/components/extensions/ext-menus.js#144
+				//
+				// Workaround with suppressing of "16" and "32" icons by empty string in manifest.json
+				// is not necessary any more.
+				//
+				// I am strongly against checkbox in submenu, so the only way
+				// is to simulate checkbox behavior by changing menu item label.
 				// otherwise the icon will be overlapped with checkbox.
 				const id = CMIID_CHECKBOX;
 				const result = chrome.contextMenus.create({
-					title: `Alt Tong: ${title}`,
+					title: getCheckboxWorkaroundMessage(checked, title),
 					id,
 					contexts,
-					type: "checkbox",
-					checked
+					type: "normal"//, // Do not use "checkbox", see comments above
+					// checked
 				}, () => this.checkBoxListener({ menuItemId: id, checked }));
 
 				this.setListener(this.checkBoxListener);

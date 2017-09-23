@@ -13,5 +13,13 @@
 			}
 		}
 	},
-	"menuDefault": { "message": "Default" }
+	"menuDefault": { "message": "Default" },
+	"menuCheckboxActivate": {
+		"message": "activate",
+		"description": "Appears in 'Alt Tong: <message> fr,en;q=0.5'"
+	},
+	"menuCheckboxDisable": {
+		"message": "disable",
+		"description": "Appears in 'Alt Tong: <message> fr,en;q=0.5'"
+	}
 }
