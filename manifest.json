@@ -10,9 +10,7 @@
 	"default_locale": "en",
 	"icons": {
 		"48": "icons/alt-tong-48.png",
-		"96": "icons/alt-tong-96.png",
-		"16": "icons/transparent.png",
-		"32": "icons/transparent.png"
+		"96": "icons/alt-tong-96.png"
 	},
 
 	"permissions": [
