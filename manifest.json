@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Alt Tong",
 	"short_name": "__MSG_extensionName__",
-	"version": "0.2",
+	"version": "0.3",
 
 	"description": "__MSG_extensionDescription__",
 	"author": "__MSG_author__",
@@ -27,7 +27,7 @@
 	"applications": {
 		"gecko": {
 			"id": "alt-tong-desktop@maxnikulin.github.io",
-			"strict_min_version": "50.0"
+			"strict_min_version": "53.0"
 		}
 	}
 }
