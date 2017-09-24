@@ -181,7 +181,8 @@ var AltTong = (function() {
 		currentMenu.clear();
 
 		if (newItems == null || !(newItems.length > 0)) {
-			const isDefault = (newItems.length === 1 && newItems[0].value === defaultLangs);
+			const isDefault = (newItems != null
+					&& newItems.length === 1 && newItems[0].value === defaultLangs);
 			removed.then(() => contextMenus.createConfig(isDefault));
 			return false;
 		}
